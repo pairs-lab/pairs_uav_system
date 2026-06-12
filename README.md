@@ -12,12 +12,12 @@ Thus, our platform is built to allow safe real-world experimental validation of 
 
 > :warning: **Attention please: This README concerns the _old_ ROS1 version of the system.**
 >
-> Please, visit the _ros2_ branch ([README](https://github.com/ctu-mrs/pairs_uav_system/tree/ros2?tab=readme-ov-file#multi-robot-systems-group-uav-system)) regarding the upcoming ROS2 version of the system.
+> Please, visit the _ros2_ branch ([README](https://github.com/pairs-lab/pairs_uav_system/tree/ros2?tab=readme-ov-file#multi-robot-systems-group-uav-system)) regarding the upcoming ROS2 version of the system.
 
 Do you want to monitor the state of transition to ROS2 in real time?
 Check the following diagram:
 
-[![](https://github.com/ctu-mrs/pairs_uav_system/raw/diagram/ros2_transition_diagram.png)](https://ctu-mrs.github.io/ros2_obsidian_knowledgebase/main_canvas.html)
+[![](https://github.com/pairs-lab/pairs_uav_system/raw/diagram/ros2_transition_diagram.png)](https://ctu-mrs.github.io/ros2_obsidian_knowledgebase/main_canvas.html)
 
 ## System properties
 
@@ -28,7 +28,7 @@ The system is
 * can control underactuated multirotor helicopters,
 * contains control, state estimation, mapping, and planning pipelines.
 
-![](https://github.com/ctu-mrs/pairs_uav_system/raw/gifs/gazebo_circle.gif)
+![](https://github.com/pairs-lab/pairs_uav_system/raw/gifs/gazebo_circle.gif)
 
 ## [Documentation](https://ctu-mrs.github.io/docs/1.5.0/introduction/)
 
@@ -39,18 +39,18 @@ Most of our users are either researchers (who already know the platform) or fres
 Maintaining up-to-date documentation for such an audience is hard work since we mostly develop the system while using it for our research.
 So, instead, we aim at educating our students to look around the packages (each contains its own README), explore the launch files, and be able to read the code, which we strive to keep readable.
 
-[![](https://github.com/ctu-mrs/pairs_uav_system/raw/diagram/pairs_uav_system_diagram.png)](https://github.com/ctu-mrs/pairs_uav_system/raw/diagram/pairs_uav_system_diagram.png)
+[![](https://github.com/pairs-lab/pairs_uav_system/raw/diagram/pairs_uav_system_diagram.png)](https://github.com/pairs-lab/pairs_uav_system/raw/diagram/pairs_uav_system_diagram.png)
 
 The control and estimation system are described in the article [doi.org/10.1007/s10846-021-01383-5](https://doi.org/10.1007/s10846-021-01383-5), [pdf](https://link.springer.com/content/pdf/10.1007/s10846-021-01383-5.pdf):
 ```
 Baca, T., Petrlik, M., Vrba, M., Spurny, V., Penicka, R., Hert, D., and Saska, M.,
-"The MRS UAV System: Pushing the Frontiers of Reproducible Research, Real-world Deployment, and
+"The PAIRS UAV System: Pushing the Frontiers of Reproducible Research, Real-world Deployment, and
 Education with Autonomous Unmanned Aerial Vehicles", J Intell Robot Syst 102, 26 (2021).
 ```
 
 ## Installation
 
-For ROS2 installation instructions, follow [here](https://github.com/ctu-mrs/pairs_uav_system/tree/ros2?tab=readme-ov-file#multi-robot-systems-group-uav-system).
+For ROS2 installation instructions, follow [here](https://github.com/pairs-lab/pairs_uav_system/tree/ros2?tab=readme-ov-file#multi-robot-systems-group-uav-system).
 
 ### Native installation
 
@@ -67,7 +67,7 @@ sudo apt install ros-noetic-desktop-full
 curl https://ctu-mrs.github.io/ppa-stable/add_ppa.sh | bash
 ```
   * <details>
-    <summary>>>> Special instructions for the MRS System developers <<<</summary>
+    <summary>>>> Special instructions for the PAIRS System developers <<<</summary>
 
       * Instead of the stable PPA, you can add the **[unstable](https://github.com/ctu-mrs/ppa-unstable)** PPA, for which the packages are build immediatelly after being pushed to **master**.
       * If you have both PPAs, the **unstable** has a priority.
@@ -75,9 +75,9 @@ curl https://ctu-mrs.github.io/ppa-stable/add_ppa.sh | bash
 
     </details>
 
-4. Install the MRS UAV System:
+4. Install the PAIRS UAV System:
 ```bash
-sudo apt install ros-noetic-mrs-uav-system-full
+sudo apt install ros-noetic-pairs-uav-system-full
 ```
 
 5. Start the example Gazebo simulation session:
@@ -90,17 +90,17 @@ roscd pairs_uav_gazebo_simulation/tmux/one_drone
 
 Please follow this link to learn how to run our system using Apptainer.
 
-* [MRS Apptainer](https://github.com/ctu-mrs/pairs_apptainer)
+* [PAIRS Apptainer](https://github.com/pairs-lab/pairs_apptainer)
 
 ### Docker Containers
 
 Please follow this link to learn how to run our system using Apptainer.
 
-* [MRS Docker](https://github.com/ctu-mrs/pairs_docker)
+* [PAIRS Docker](https://github.com/pairs-lab/pairs_docker)
 
 ### Start developing your own package
 
-This tutorial assumes you've installed the MRS UAV System natively or are running a Apptainer container.
+This tutorial assumes you've installed the PAIRS UAV System natively or are running a Apptainer container.
 
 1. Setup a catkin workspace:
 ```
@@ -118,7 +118,7 @@ catkin profile set reldeb                     # set the reldeb profile as active
 ```
 # it is good practice to not clone ROS packages directly into a workspace, so let's use a separate directory for this
 git clone git@github.com:ctu-mrs/pairs_core_examples.git ~/git/pairs_core_examples                    # clone this repository (recommended, requires private key on Github)
-# git clone https://github.com/ctu-mrs/pairs_core_examples.git ~/git/pairs_core_examples              # if you do not have a private key set up on Github, you can use https instead of ssh
+# git clone https://github.com/pairs-lab/pairs_core_examples.git ~/git/pairs_core_examples              # if you do not have a private key set up on Github, you can use https instead of ssh
 export NEW_PACKAGE=replaceme                                                                      # fill the NEW_NAME variable with your desired name of the new package (no spaces)
 cp -r ~/git/pairs_core_examples/cpp/waypoint_flier ~/git/$NEW_PACKAGE                               # copy an example package (e.g. the waypoint_flier)
 cp ~/git/pairs_core_examples/repurpose_package.sh ~/git/$NEW_PACKAGE                                # copy the repurpose_package.sh script to the new package
@@ -152,39 +152,39 @@ git push --set-upstream origin master                                           
 
 | Main metapackages     | Contents               | Repository                                                  | Package                          |
 |-----------------------|------------------------|-------------------------------------------------------------|----------------------------------|
-| MRS UAV System        | UAV Core & UAV Modules | [pairs_uav_system](https://github.com/ctu-mrs/pairs_uav_system) | `ros-noetic-mrs-uav-system`      |
-| MRS UAV System - Full | All of the bellow      | [pairs_uav_system](https://github.com/ctu-mrs/pairs_uav_system) | `ros-noetic-mrs-uav-system-full` |
+| PAIRS UAV System        | UAV Core & UAV Modules | [pairs_uav_system](https://github.com/pairs-lab/pairs_uav_system) | `ros-noetic-pairs-uav-system`      |
+| PAIRS UAV System - Full | All of the bellow      | [pairs_uav_system](https://github.com/pairs-lab/pairs_uav_system) | `ros-noetic-pairs-uav-system-full` |
 
 | Optional Modules & metapackages | Repository                                                                              | Package                                   |
 |---------------------------------|-----------------------------------------------------------------------------------------|-------------------------------------------|
-| UAV Core                        | [pairs_uav_core](https://github.com/ctu-mrs/pairs_uav_core)                                 | `ros-noetic-mrs-uav-core`                 |
-| UAV Modules                     | [pairs_uav_modules](https://github.com/ctu-mrs/pairs_uav_modules)                           | `ros-noetic-mrs-uav-modules`              |
-| Octomap Mapping+Planning        | [pairs_octomap_mapping_planning](https://github.com/ctu-mrs/pairs_octomap_mapping_planning) | `ros-noetic-mrs-octomap-mapping-planning` |
-| ALOAM Core                      | [pairs_aloam_core](https://github.com/ctu-mrs/pairs_aloam_core)                             | `ros-noetic-mrs-aloam-core`               |
-| LIO-SAM Core                    | [pairs_liosam_core](https://github.com/ctu-mrs/pairs_liosam_core)                           | `ros-noetic-mrs-liosam-core`              |
-| Hector Core                     | [pairs_hector_core](https://github.com/ctu-mrs/pairs_hector_core)                           | `ros-noetic-mrs-hector-core`              |
-| OpenVINS Core                   | [pairs_open_vins_core](https://github.com/ctu-mrs/pairs_open_vins_core)                     | `ros-noetic-mrs-open-vins-core`           |
-| Precise Landing                 | [pairs_precise_landing](https://github.com/ctu-mrs/pairs_precise_landing)                   | `ros-noetic-mrs-precise-landing`          |
+| UAV Core                        | [pairs_uav_core](https://github.com/pairs-lab/pairs_uav_core)                                 | `ros-noetic-pairs-uav-core`                 |
+| UAV Modules                     | [pairs_uav_modules](https://github.com/pairs-lab/pairs_uav_modules)                           | `ros-noetic-pairs-uav-modules`              |
+| Octomap Mapping+Planning        | [pairs_octomap_mapping_planning](https://github.com/pairs-lab/pairs_octomap_mapping_planning) | `ros-noetic-pairs-octomap-mapping-planning` |
+| ALOAM Core                      | [pairs_aloam_core](https://github.com/pairs-lab/pairs_aloam_core)                             | `ros-noetic-pairs-aloam-core`               |
+| LIO-SAM Core                    | [pairs_liosam_core](https://github.com/pairs-lab/pairs_liosam_core)                           | `ros-noetic-pairs-liosam-core`              |
+| Hector Core                     | [pairs_hector_core](https://github.com/pairs-lab/pairs_hector_core)                           | `ros-noetic-pairs-hector-core`              |
+| OpenVINS Core                   | [pairs_open_vins_core](https://github.com/pairs-lab/pairs_open_vins_core)                     | `ros-noetic-pairs-open-vins-core`           |
+| Precise Landing                 | [pairs_precise_landing](https://github.com/pairs-lab/pairs_precise_landing)                   | `ros-noetic-pairs-precise-landing`          |
 
 | Simulators          | Repository                                                                            | Package                                  |
 |---------------------|---------------------------------------------------------------------------------------|------------------------------------------|
-| Gazebo Simulation   | [pairs_uav_gazebo_simulation](https://github.com/ctu-mrs/pairs_uav_gazebo_simulation)     | `ros-noetic-mrs-uav-gazebo-simulation`   |
-| MRS Simulation      | [pairs_multirotor_simulator](https://github.com/ctu-mrs/pairs_multirotor_simulator)       | `ros-noetic-mrs-multirotor-simulator`    |
-| Coppelia Simulation | [pairs_uav_coppelia_simulation](https://github.com/ctu-mrs/pairs_uav_coppelia_simulation) | `ros-noetic-mrs-uav-coppelia-simulation` |
-| Unreal Simulation   | [pairs_uav_unreal_simulation](https://github.com/ctu-mrs/pairs_uav_unreal_simulation)     | `ros-noetic-mrs-uav-unreal-simulation`   |
+| Gazebo Simulation   | [pairs_uav_gazebo_simulation](https://github.com/pairs-lab/pairs_uav_gazebo_simulation)     | `ros-noetic-pairs-uav-gazebo-simulation`   |
+| PAIRS Simulation      | [pairs_multirotor_simulator](https://github.com/pairs-lab/pairs_multirotor_simulator)       | `ros-noetic-pairs-multirotor-simulator`    |
+| Coppelia Simulation | [pairs_uav_coppelia_simulation](https://github.com/pairs-lab/pairs_uav_coppelia_simulation) | `ros-noetic-pairs-uav-coppelia-simulation` |
+| Unreal Simulation   | [pairs_uav_unreal_simulation](https://github.com/pairs-lab/pairs_uav_unreal_simulation)     | `ros-noetic-pairs-uav-unreal-simulation`   |
 
 | Hardware API plugins | Repository                                                                | Package                            |
 |----------------------|---------------------------------------------------------------------------|------------------------------------|
-| PX4 API              | [pairs_uav_px4_api](https://github.com/ctu-mrs/pairs_uav_px4_api)             | `ros-noetic-mrs-uav-px4-api`       |
-| DJI Tello API        | [pairs_uav_dji_tello_api](https://github.com/ctu-mrs/pairs_uav_dji_tello_api) | `ros-noetic-mrs-uav-dji-tello-api` |
+| PX4 API              | [pairs_uav_px4_api](https://github.com/pairs-lab/pairs_uav_px4_api)             | `ros-noetic-pairs-uav-px4-api`       |
+| DJI Tello API        | [pairs_uav_dji_tello_api](https://github.com/pairs-lab/pairs_uav_dji_tello_api) | `ros-noetic-pairs-uav-dji-tello-api` |
 
 ## Example packages
 
 | Examples                    | Repository                                                                                    | Build status                                                                                                                                                                                                                    |
 |-----------------------------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Core examples               | [pairs_core_examples](https://github.com/ctu-mrs/pairs_core_examples)                             | [![ros_build_test](https://github.com/ctu-mrs/pairs_core_examples/actions/workflows/ros_build_test.yml/badge.svg)](https://github.com/ctu-mrs/pairs_core_examples/actions/workflows/ros_build_test.yml)                             |
-| Computer Vision examples    | [pairs_computer_vision_examples](https://github.com/ctu-mrs/pairs_computer_vision_examples)       | [![ros_build_test](https://github.com/ctu-mrs/pairs_computer_vision_examples/actions/workflows/ros_build_test.yml/badge.svg)](https://github.com/ctu-mrs/pairs_computer_vision_examples/actions/workflows/ros_build_test.yml)       |
-| Gazebo Custom Drone example | [pairs_gazebo_custom_drone_example](https://github.com/ctu-mrs/pairs_gazebo_custom_drone_example) | [![ros_build_test](https://github.com/ctu-mrs/pairs_gazebo_custom_drone_example/actions/workflows/ros_build_test.yml/badge.svg)](https://github.com/ctu-mrs/pairs_gazebo_custom_drone_example/actions/workflows/ros_build_test.yml) |
+| Core examples               | [pairs_core_examples](https://github.com/pairs-lab/pairs_core_examples)                             | [![ros_build_test](https://github.com/pairs-lab/pairs_core_examples/actions/workflows/ros_build_test.yml/badge.svg)](https://github.com/pairs-lab/pairs_core_examples/actions/workflows/ros_build_test.yml)                             |
+| Computer Vision examples    | [pairs_computer_vision_examples](https://github.com/pairs-lab/pairs_computer_vision_examples)       | [![ros_build_test](https://github.com/pairs-lab/pairs_computer_vision_examples/actions/workflows/ros_build_test.yml/badge.svg)](https://github.com/pairs-lab/pairs_computer_vision_examples/actions/workflows/ros_build_test.yml)       |
+| Gazebo Custom Drone example | [pairs_gazebo_custom_drone_example](https://github.com/pairs-lab/pairs_gazebo_custom_drone_example) | [![ros_build_test](https://github.com/pairs-lab/pairs_gazebo_custom_drone_example/actions/workflows/ros_build_test.yml/badge.svg)](https://github.com/pairs-lab/pairs_gazebo_custom_drone_example/actions/workflows/ros_build_test.yml) |
 
 ## Build status ([Buildfarm](https://github.com/ctu-mrs/buildfarm))
 
@@ -195,8 +195,8 @@ The **stable** version of our system should be installable and working allways r
 
 Download from Dockerhub: [ctumrs/pairs_uav_system:latest](https://hub.docker.com/r/ctumrs/pairs_uav_system/tags)
 
-The multiarch (AMD and ARM64) docker image contains the `ros-noetic-mrs-uav-system-full` ROS package and, with that, all the MRS dependencies.
-See the [MRS Docker](http://github.com/ctu-mrs/pairs_docker) repository for information on how to run the MRS UAV System using docker.
+The multiarch (AMD and ARM64) docker image contains the `ros-noetic-pairs-uav-system-full` ROS package and, with that, all the PAIRS dependencies.
+See the [PAIRS Docker](http://github.com/pairs-lab/pairs_docker) repository for information on how to run the PAIRS UAV System using docker.
 
 ### PPAs
 
@@ -214,7 +214,7 @@ See the [MRS Docker](http://github.com/ctu-mrs/pairs_docker) repository for info
 
 |                         | [Stable](https://github.com/ctu-mrs/ppa-stable)                                                                                                                                                                | Release Candidate                                                                                                                                                                                                                | [Unstable](https://github.com/ctu-mrs/ppa-unstable)                                                                                                                                                                  |
 |-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| MRS ROS Packages        | [![stable-mrs-amd64](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_pairs_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_pairs_amd64.yml)                      | [![build_testing_test_release](https://github.com/ctu-mrs/buildfarm/actions/workflows/build_testing_test_release.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/build_testing_test_release.yml)          | [![unstable-mrs-amd64](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_pairs_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_pairs_amd64.yml)                      |
+| PAIRS ROS Packages        | [![stable-mrs-amd64](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_pairs_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_pairs_amd64.yml)                      | [![build_testing_test_release](https://github.com/ctu-mrs/buildfarm/actions/workflows/build_testing_test_release.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/build_testing_test_release.yml)          | [![unstable-mrs-amd64](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_pairs_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_pairs_amd64.yml)                      |
 | Thirdparty ROS packages | [![stable-thirdparty-amd64](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_thirdparty_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_thirdparty_amd64.yml) | [![testing--thirdparty-amd64](https://github.com/ctu-mrs/buildfarm/actions/workflows/testing_thirdparty_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/testing_thirdparty_amd64.yml)               | [![unstable-thirdparty-amd64](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_thirdparty_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_thirdparty_amd64.yml) |
 | Non-ROS packages        | [![stable-nonbloom-amd64](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_nonbloom_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_nonbloom_amd64.yml)       | [![testing--nonbloom-amd64](https://github.com/ctu-mrs/buildfarm/actions/workflows/testing_nonbloom_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/testing_nonbloom_amd64.yml)                     | [![unstable-nonbloom-amd64](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_nonbloom_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_nonbloom_amd64.yml)       |
 
@@ -222,7 +222,7 @@ See the [MRS Docker](http://github.com/ctu-mrs/pairs_docker) repository for info
 
 |                         | [Stable](https://github.com/ctu-mrs/ppa-stable)                                                                                                                                                                | [Unstable](https://github.com/ctu-mrs/ppa-unstable)                                                                                                                                                                  |
 |-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| MRS ROS Packages        | [![stable-mrs-arm64](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_pairs_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_pairs_arm64.yml)                      | [![unstable-mrs-arm64](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_pairs_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_pairs_arm64.yml)                      |
+| PAIRS ROS Packages        | [![stable-mrs-arm64](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_pairs_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_pairs_arm64.yml)                      | [![unstable-mrs-arm64](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_pairs_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_pairs_arm64.yml)                      |
 | Thirdparty ROS packages | [![stable-thirdparty-arm64](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_thirdparty_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_thirdparty_arm64.yml) | [![unstable-thirdparty-arm64](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_thirdparty_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_thirdparty_arm64.yml) |
 | Non-ROS packages        | [![stable-nonbloom-arm64](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_nonbloom_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/stable_nonbloom_arm64.yml)       | [![unstable-nonbloom-arm64](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_nonbloom_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm/actions/workflows/unstable_nonbloom_arm64.yml)       |
 
@@ -238,11 +238,11 @@ See the [MRS Docker](http://github.com/ctu-mrs/pairs_docker) repository for info
 
 Any package within the system have the option to generate a docker image.
 These are typically thirdparty package with complex dependencies that can not be easily satisfied through the `apt` installation system.
-Additionally, the `mrs-uav-system` package generates a docker image with full the system.
+Additionally, the `pairs-uav-system` package generates a docker image with full the system.
 
 |                         | [Stable](https://github.com/ctu-mrs/ppa-stable)                                                                                                                                                                        | Unstable                                                                                                                                                                                                                     |
 |-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| MRS ROS Packages        | [![stable_pairs_dockers](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_dockers.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_dockers.yml)                      | [![unstable_pairs_dockers](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_dockers.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_dockers.yml)                      |
+| PAIRS ROS Packages        | [![stable_pairs_dockers](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_dockers.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_dockers.yml)                      | [![unstable_pairs_dockers](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_dockers.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_dockers.yml)                      |
 | Thirdparty ROS packages | [![stable_thirdparty_dockers](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_dockers.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_dockers.yml) | [![unstable_thirdparty_dockers](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_dockers.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_dockers.yml) |
 
 ### Testing
@@ -255,7 +255,7 @@ Additionally, the `mrs-uav-system` package generates a docker image with full th
 
 |                         | [Stable](https://github.com/ctu-mrs/ppa2-stable)                                                                                                                                                                 | Release Candidate                                                                                                                                                                                                         | [Unstable](https://github.com/ctu-mrs/ppa2-unstable)                                                                                                                                                                   |
 |-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| MRS ROS Packages        | [![stable-mrs-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_amd64.yml)                      | [![build_testing_test_release](https://github.com/ctu-mrs/buildfarm2/actions/workflows/build_testing_test_release.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/build_testing_test_release.yml) | [![unstable-mrs-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_amd64.yml)                      |
+| PAIRS ROS Packages        | [![stable-mrs-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_amd64.yml)                      | [![build_testing_test_release](https://github.com/ctu-mrs/buildfarm2/actions/workflows/build_testing_test_release.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/build_testing_test_release.yml) | [![unstable-mrs-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_amd64.yml)                      |
 | Thirdparty ROS packages | [![stable-thirdparty-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_amd64.yml) | [![testing--thirdparty-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/testing_thirdparty_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/testing_thirdparty_amd64.yml)      | [![unstable-thirdparty-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_amd64.yml) |
 | Non-ROS packages        | [![stable-nonbloom-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_nonbloom_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_nonbloom_amd64.yml)       | [![testing--nonbloom-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/testing_nonbloom_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/testing_nonbloom_amd64.yml)            | [![unstable-nonbloom-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_nonbloom_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_nonbloom_amd64.yml)       |
 
@@ -263,13 +263,13 @@ Additionally, the `mrs-uav-system` package generates a docker image with full th
 
 |                         | [Stable](https://github.com/ctu-mrs/ppa2-stable)                                                                                                                                                                | [Unstable](https://github.com/ctu-mrs/ppa2-unstable)                                                                                                                                                                  |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| MRS ROS Packages        | [![stable-mrs-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_arm64.yml)                     | [![unstable-mrs-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_arm64.yml)                     |
+| PAIRS ROS Packages        | [![stable-mrs-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_arm64.yml)                     | [![unstable-mrs-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_arm64.yml)                     |
 | Thirdparty ROS packages | [![stable-thirdparty-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_arm64.yml) | [![unstable-thirdparty-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_arm64.yml) |
 | Non-ROS packages        | [![stable-nonbloom-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_nonbloom_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_nonbloom_arm64.yml)       | [![unstable-nonbloom-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_nonbloom_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_nonbloom_arm64.yml)       |
 
 ## Unmanned Aerial Vehicles
 
-The MRS UAV system is pre-configured for the following UAV platforms operated by the MRS.
+The PAIRS UAV system is pre-configured for the following UAV platforms operated by the PAIRS.
 The UAV platforms can be purchased from our partner company [Fly4Future](https://dronebuilder.fly4future.com/#/).
 
 | Model         | Simulation                    | Real UAV                |
@@ -285,20 +285,20 @@ The UAV platforms can be purchased from our partner company [Fly4Future](https:/
 ## Backwards Compatibility and updates
 
 We do not guarantee backward compatibility at any time.
-The platform is evolving according to the needs of the MRS group.
+The platform is evolving according to the needs of the PAIRS group.
 Updates can be made that will not be compatible with users' local configs, simulation worlds, tmux sessions, etc.
 However, when we change something that requires user action to maintain compatibility, we will create an issue in this repository labeled **users-read-me**.
 Subscribe to this repository updates and issues by clicking the **Watch** button in the top-right corner of this page.
 Recent changes requiring user action:
 
-* now: **Work-in-Progress** **MRS UAV System 1.5:** [many changes](https://docs.google.com/document/d/1NibHqNdyzzAYE7DNIMMq1HmzyFrBnISbzV17dP-waYw/edit?usp=sharing)
-* January 17, 2023: [Updates for px4 firmware v1.13.2](https://github.com/ctu-mrs/pairs_uav_system/issues/150)
-* March 8, 2022: [pairs_lib::Transformer interface updated](https://github.com/ctu-mrs/pairs_uav_system/issues/136)
-* December 09, 2021: [not building with --march=native anymore](https://github.com/ctu-mrs/pairs_uav_system/issues/126)
-* December 25, 2020: [Updated controller interface, updated thrust curve parametrization](https://github.com/ctu-mrs/pairs_uav_system/issues/33)
-* December 15, 2020: [Rework of simulation UAV spawning mechanism, Noetic update](https://github.com/ctu-mrs/pairs_uav_system/issues/32)
-* November 12, 2020: [GPS coordinates within Gazebo world need changing](https://github.com/ctu-mrs/pairs_uav_system/issues/22)
-* November 12, 2020: [Rangefinder fusion needs enabling in simulation sessions](https://github.com/ctu-mrs/pairs_uav_system/issues/21)
+* now: **Work-in-Progress** **PAIRS UAV System 1.5:** [many changes](https://docs.google.com/document/d/1NibHqNdyzzAYE7DNIMMq1HmzyFrBnISbzV17dP-waYw/edit?usp=sharing)
+* January 17, 2023: [Updates for px4 firmware v1.13.2](https://github.com/pairs-lab/pairs_uav_system/issues/150)
+* March 8, 2022: [pairs_lib::Transformer interface updated](https://github.com/pairs-lab/pairs_uav_system/issues/136)
+* December 09, 2021: [not building with --march=native anymore](https://github.com/pairs-lab/pairs_uav_system/issues/126)
+* December 25, 2020: [Updated controller interface, updated thrust curve parametrization](https://github.com/pairs-lab/pairs_uav_system/issues/33)
+* December 15, 2020: [Rework of simulation UAV spawning mechanism, Noetic update](https://github.com/pairs-lab/pairs_uav_system/issues/32)
+* November 12, 2020: [GPS coordinates within Gazebo world need changing](https://github.com/pairs-lab/pairs_uav_system/issues/22)
+* November 12, 2020: [Rangefinder fusion needs enabling in simulation sessions](https://github.com/pairs-lab/pairs_uav_system/issues/21)
 
 # Disclaimer
 
