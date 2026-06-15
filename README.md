@@ -121,7 +121,7 @@ roscd $NEW_PACKAGE                      # now ROS knows about your new package a
 
 | Simulators          | Repository                                                                            | Package                                  |
 |---------------------|---------------------------------------------------------------------------------------|------------------------------------------|
-| Gazebo Simulation   | [pairs_uav_gazebo_simulator](https://github.com/pairs-lab/pairs_uav_gazebo_simulator)     | `ros-noetic-pairs-uav-gazebo-simulator`   |
+| Gazebo Simulation   | [pairs_uav_gazebo_simulator](https://github.com/pairs-lab/pairs_uav_gazebo_simulator)     | `ros-noetic-pairs-uav-gazebo-simulation`   |
 | PAIRS Simulation      | [pairs_multirotor_simulator](https://github.com/pairs-lab/pairs_multirotor_simulator)       | `ros-noetic-pairs-multirotor-simulator`    |
 | Coppelia Simulation | [pairs_uav_coppelia_simulation](https://github.com/pairs-lab/pairs_uav_coppelia_simulation) | `ros-noetic-pairs-uav-coppelia-simulation` |
 | Unreal Simulation   | [pairs_uav_unreal_simulation](https://github.com/pairs-lab/pairs_uav_unreal_simulation)     | `ros-noetic-pairs-uav-unreal-simulation`   |
