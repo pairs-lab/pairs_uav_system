@@ -1,7 +1,5 @@
 # PAIRS UAV System
 
-![thumbnail](.fig/drone_collage.jpg)
-
 The **PAIRS UAV System** is a control, estimation, and simulation stack for
 multirotor aerial vehicles.
 We build it to support safe, replicable real-world experimental validation of
