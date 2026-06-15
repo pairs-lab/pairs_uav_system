@@ -68,7 +68,7 @@ cd /opt/ros/jazzy/share/pairs_multirotor_simulator/tmux/pairs_one_drone
 |----------------------------|-----------------------------------------------------------------------------------------------------------|---------------------------------------------|
 | PAIRS Multirotor Simulator | [pairs_multirotor_simulator](https://github.com/pairs-lab/pairs_multirotor_simulator/tree/ros2)           | `ros-jazzy-pairs-multirotor-simulator`      |
 | FlightForge Simulator      | [pairs_uav_flightforge_simulator](https://github.com/pairs-lab/pairs_uav_flightforge_simulator/tree/ros2) | `ros-jazzy-pairs-uav-flightforge-simulator` |
-| Gazebo Simulator           | [pairs_uav_gazebo_simulation](https://github.com/pairs-lab/pairs_uav_gazebo_simulation/tree/ros2)         | `ros-jazzy-pairs-uav-gazebo-simulator`      |
+| Gazebo Simulator           | [pairs_uav_gazebo_simulator](https://github.com/pairs-lab/pairs_uav_gazebo_simulator/tree/ros2)         | `ros-jazzy-pairs-uav-gazebo-simulator`      |
 
 | Hardware API plugins | Repository                                                                                | Package                             |
 |----------------------|-------------------------------------------------------------------------------------------|-------------------------------------|
