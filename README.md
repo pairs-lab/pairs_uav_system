@@ -1,91 +1,48 @@
-# ROS2 MRS UAV system
-![logos](.fig/logos.png)
+# PAIRS UAV System (ROS 2)
 
-![thumbnail](.fig/drone_collage.jpg)
+The **PAIRS UAV System** is a control, estimation, and simulation stack for
+multirotor aerial vehicles.
+We build it to support safe, replicable real-world experimental validation of
+research in planning, control, estimation, computer vision, and tracking.
 
-The [Multi-robot Systems Group](http://mrs.felk.cvut.cz) is a robotics lab at the [Czech Technical University in Prague](https://www.cvut.cz/).
-We specialize in multi-rotor helicopters, and for them specifically, we develop this control, estimation, and simulation system.
-We think real-world and replicable experiments should support excellent research and science in robotics.
-Thus, our platform is built to allow safe real-world experimental validation of approaches in planning, control, estimation, computer vision, tracking, and more.
-
-## ROS2
-
-Do you want to monitor the state of transition to ROS2 in real time?
-Check the following diagram:
-
-[![](https://github.com/ctu-mrs/pairs_uav_system/raw/diagram/ros2_transition_diagram.png)](https://ctu-mrs.github.io/ros2_obsidian_knowledgebase/main_canvas.html)
+This is the **ros2** branch (ROS 2 Jazzy, ament_cmake). For the ROS 1 Noetic
+version, see the [`ros1` branch](https://github.com/pairs-lab/pairs_uav_system/tree/ros1).
 
 ## System properties
 
 The system is
 
-* built on the [Robot Operating System](https://www.ros.org/) Jazzy,
+* built on the [Robot Operating System 2](https://www.ros.org/) Jazzy,
 * meant to be executed entirely onboard on a companion computer,
-* can control underactuated multirotor helicopters,
-* contains control, state estimation, mapping, and planning pipelines.
+* able to control underactuated multirotor helicopters,
+* composed of control, state estimation, mapping, and planning pipelines.
 
-![](https://github.com/ctu-mrs/pairs_uav_system/raw/gifs/gazebo_circle.gif)
+## Documentation
 
-## [Documentation](https://ctu-mrs.github.io/)
-
-The primary documentation source is here: [https://ctu-mrs.github.io/](https://ctu-mrs.github.io/).
-However, the website only scratches the surface of what it should contain (and we know it).
-Our system is a research-oriented platform, and it evolves rapidly.
-Most of our users are either researchers (who already know the platform) or freshmen students (who might not know ROS).
-Maintaining up-to-date documentation for such an audience is hard work since we mostly develop the system while using it for our research.
-So, instead, we aim at educating our students to look around the packages (each contains its own README), explore the launch files, and be able to read the code, which we strive to keep readable.
-
-[![](https://github.com/ctu-mrs/pairs_uav_system/raw/diagram/pairs_uav_system_diagram.png)](https://github.com/ctu-mrs/pairs_uav_system/raw/diagram/pairs_uav_system_diagram.png)
-
-The control and estimation system are described in the article [doi.org/10.1007/s10846-021-01383-5](https://doi.org/10.1007/s10846-021-01383-5), [pdf](https://link.springer.com/content/pdf/10.1007/s10846-021-01383-5.pdf):
-
-```
-Baca, T., Petrlik, M., Vrba, M., Spurny, V., Penicka, R., Hert, D., and Saska, M.,
-"The MRS UAV System: Pushing the Frontiers of Reproducible Research, Real-world Deployment, and
-Education with Autonomous Unmanned Aerial Vehicles", J Intell Robot Syst 102, 26 (2021).
-```
+The system is a research-oriented platform that evolves rapidly. Each package
+carries its own README; we keep the launch files and the code itself readable so
+they double as documentation.
 
 ## Installation
 
-### Native installation
+### From the PAIRS apt repository (recommended)
 
-1. Install the Robot Operating System (Jazzy):
+1. Install ROS 2 Jazzy and configure your environment per the ROS 2 docs.
 
+2. Add the signed PAIRS repository:
 ```bash
-curl https://ctu-mrs.github.io/ppa2-stable/add_ros_ppa.sh | bash
-sudo apt install ros-jazzy-desktop-full ros-dev-tools
+curl -fsSL https://thanhnguyencanh.github.io/apt/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/pairs.gpg
+echo "deb [signed-by=/usr/share/keyrings/pairs.gpg] https://thanhnguyencanh.github.io/apt jazzy main" \
+  | sudo tee /etc/apt/sources.list.d/pairs.list
+sudo apt update
 ```
 
-2. Configure your ROS environment according to [https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html#setup-environment](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html#setup-environment)
-
-3. Add the **[stable](https://github.com/ctu-mrs/ppa2-stable)** PPA into your apt-get repository:
-
+3. Install the full PAIRS UAV System:
 ```bash
-curl https://ctu-mrs.github.io/ppa2-stable/add_ppa.sh | bash
+sudo apt install ros-jazzy-pairs-uav-system-full
 ```
 
-  * <details>
-    <summary>>>> Special instructions for the MRS System developers <<<</summary>
-
-      * Instead of the stable PPA, you can add the **[unstable](https://github.com/ctu-mrs/ppa2-unstable)** PPA, for which the packages are build immediatelly after being pushed to **ros2**.
-      * If you have both PPAs, the **unstable** has a priority.
-      * Beware! The **unstable** PPA might be internally inconsistent, buggy and dangerous!
-
-      <br>
-
-      * If you use the shell additions described [here](https://ctu-mrs.github.io/docs/prerequisites/ros2/workspace-build/#3-get-aliases-that-make-common-ros2-commands-usable), you should **not** manually source ROS or your workspaces.
-      * You should normally use [zenoh](https://ctu-mrs.github.io/docs/installation/native-installation#4-set-zenoh-to-be-the-used-rmw-implementation) as the RMW implementation. 
-
-    </details>
-
-4. Install the MRS UAV System:
-
-```bash
-sudo apt install ros-jazzy-mrs-uav-system-full
-```
-
-5. Start the example MRS simulation session:
-
+4. Start the example simulation session:
 ```bash
 cd /opt/ros/jazzy/share/pairs_multirotor_simulator/tmux/pairs_one_drone
 ./start.sh
@@ -93,94 +50,45 @@ cd /opt/ros/jazzy/share/pairs_multirotor_simulator/tmux/pairs_one_drone
 
 ## System components
 
-| Main metapackages     | Contents               | Repository                                                            | Package                          |
-|-----------------------|------------------------|-----------------------------------------------------------------------|----------------------------------|
-| MRS UAV System        | UAV Core & UAV Modules | [pairs_uav_system](https://github.com/ctu-mrs/pairs_uav_system/tree/ros2) | `ros-jazzy-mrs-uav-system`       |
-| MRS UAV System - Full | All of the bellow      | [pairs_uav_system](https://github.com/ctu-mrs/pairs_uav_system/tree/ros2) | `ros-jazzy-mrs-uav-system-full` |
+| Main metapackages       | Contents               | Repository                                                                  | Package                            |
+|-------------------------|------------------------|-----------------------------------------------------------------------------|------------------------------------|
+| PAIRS UAV System        | UAV Core & UAV Modules | [pairs_uav_system](https://github.com/pairs-lab/pairs_uav_system/tree/ros2) | `ros-jazzy-pairs-uav-system`       |
+| PAIRS UAV System - Full | All of the below       | [pairs_uav_system](https://github.com/pairs-lab/pairs_uav_system/tree/ros2) | `ros-jazzy-pairs-uav-system-full`  |
 
-| Optional Modules & metapackages | Repository                                                                                               | Package                                  |
-|---------------------------------|----------------------------------------------------------------------------------------------------------|------------------------------------------|
-| UAV Core                        | [pairs_uav_core](https://github.com/ctu-mrs/pairs_uav_core/tree/ros2)                                        | `ros-jazzy-mrs-uav-core`                 |
-| UAV Modules                     | [pairs_uav_modules](https://github.com/ctu-mrs/pairs_uav_modules/tree/ros2)                                  | `ros-jazzy-mrs-uav-modules`              |
-| Octomap Mapping+Planning        | [pairs_octomap_mapping_planning](https://github.com/ctu-mrs/pairs_octomap_mapping_planning/tree/ros2)        | `ros-jazzy-mrs-octomap-mapping-planning` |
-| OpenVINS Core                   | [pairs_open_vins_core](https://github.com/ctu-mrs/pairs_open_vins_core/tree/ros2)                            | `ros-jazzy-mrs-open-vins-core`           |
-| PointLIO Core                   | [pairs_point_lio_core](https://github.com/ctu-mrs/pairs_point_lio_core/tree/ros2)                            | `ros-jazzy-mrs-point-lio-core`           |
-| Precise Landing                 | TODO                                                                                                     | TODO                                     |
-| ALOAM Core                      | TODO (?, probably not)                                                                                   | TODO                                     |
-| LIO-SAM Core                    | TODO (?, probably not)                                                                                   | TODO                                     |
-| Hector Core                     | TODO (?, probably not)                                                                                   | TODO                                     |
+| Optional Modules & metapackages | Repository                                                                                             | Package                                     |
+|---------------------------------|--------------------------------------------------------------------------------------------------------|---------------------------------------------|
+| UAV Core                        | [pairs_uav_core](https://github.com/pairs-lab/pairs_uav_core/tree/ros2)                                 | `ros-jazzy-pairs-uav-core`                  |
+| UAV Modules                     | [pairs_uav_modules](https://github.com/pairs-lab/pairs_uav_modules/tree/ros2)                           | `ros-jazzy-pairs-uav-modules`               |
+| Octomap Mapping+Planning        | [pairs_octomap_mapping_planning](https://github.com/pairs-lab/pairs_octomap_mapping_planning/tree/ros2) | `ros-jazzy-pairs-octomap-mapping-planning`  |
+| OpenVINS Core                   | [pairs_open_vins_core](https://github.com/pairs-lab/pairs_open_vins_core/tree/ros2)                     | `ros-jazzy-pairs-open-vins-core`            |
+| PointLIO Core                   | [pairs_point_lio_core](https://github.com/pairs-lab/pairs_point_lio_core/tree/ros2)                     | `ros-jazzy-pairs-point-lio-core`            |
+| Precise Landing                 | [pairs_precise_landing](https://github.com/pairs-lab/pairs_precise_landing/tree/ros2)                   | `ros-jazzy-pairs-precise-landing`           |
 
-| Simulators               | Repository                                                                                          | Package                                   |
-|--------------------------|-----------------------------------------------------------------------------------------------------|-------------------------------------------|
-| MRS Multirotor Simulator | [pairs_multirotor_simulator](https://github.com/ctu-mrs/pairs_multirotor_simulator/tree/ros2)           | `ros-jazzy-mrs-multirotor-simulator`      |
-| FlightForge Simulator    | [pairs_uav_flightforge_simulator](https://github.com/ctu-mrs/pairs_uav_flightforge_simulator/tree/ros2) | `ros-jazzy-mrs-uav-flightforge-simulator` |
-| Gazebo Simulator         | [pairs_uav_gazebo_simulation](https://github.com/ctu-mrs/pairs_uav_gazebo_simulation/tree/ros2)         | `ros-jazzy-mrs-uav-gazebo-simulator`      |
-| Coppelia Simulator       | TODO                                                                                                | TODO                                      |
+| Simulators                 | Repository                                                                                                | Package                                     |
+|----------------------------|-----------------------------------------------------------------------------------------------------------|---------------------------------------------|
+| PAIRS Multirotor Simulator | [pairs_multirotor_simulator](https://github.com/pairs-lab/pairs_multirotor_simulator/tree/ros2)           | `ros-jazzy-pairs-multirotor-simulator`      |
+| FlightForge Simulator      | [pairs_uav_flightforge_simulator](https://github.com/pairs-lab/pairs_uav_flightforge_simulator/tree/ros2) | `ros-jazzy-pairs-uav-flightforge-simulator` |
+| Gazebo Simulator           | [pairs_uav_gazebo_simulation](https://github.com/pairs-lab/pairs_uav_gazebo_simulation/tree/ros2)         | `ros-jazzy-pairs-uav-gazebo-simulator`      |
 
-| Hardware API plugins | Repository                                                                          | Package                           |
-|----------------------|-------------------------------------------------------------------------------------|-----------------------------------|
-| PX4 API              | [pairs_uav_px4_api](https://github.com/ctu-mrs/pairs_uav_px4_api/tree/ros2)             | `ros-jazzy-mrs-uav-px4-api`       |
-| DJI Tello API        | [pairs_uav_dji_tello_api](https://github.com/ctu-mrs/pairs_uav_dji_tello_api/tree/ros2) | `ros-jazzy-mrs-uav-dji-tello-api` |
+| Hardware API plugins | Repository                                                                                | Package                             |
+|----------------------|-------------------------------------------------------------------------------------------|-------------------------------------|
+| PX4 API              | [pairs_uav_px4_api](https://github.com/pairs-lab/pairs_uav_px4_api/tree/ros2)             | `ros-jazzy-pairs-uav-px4-api`       |
+| DJI Tello API        | [pairs_uav_dji_tello_api](https://github.com/pairs-lab/pairs_uav_dji_tello_api/tree/ros2) | `ros-jazzy-pairs-uav-dji-tello-api` |
 
 ## Example packages
 
-| Examples                    | Repository                                                                                        |
-|-----------------------------|---------------------------------------------------------------------------------------------------|
-| Core examples               | [pairs_core_examples](https://github.com/ctu-mrs/pairs_core_examples/tree/ros2)                       |
-| Computer Vision examples    | [pairs_computer_vision_examples](https://github.com/ctu-mrs/pairs_computer_vision_examples/tree/ros2) |
-| Gazebo Custom Drone example | TODO                                                                                              |
+| Examples                 | Repository                                                                                              |
+|--------------------------|---------------------------------------------------------------------------------------------------------|
+| Core examples            | [pairs_core_examples](https://github.com/pairs-lab/pairs_core_examples/tree/ros2)                       |
+| Computer Vision examples | [pairs_computer_vision_examples](https://github.com/pairs-lab/pairs_computer_vision_examples/tree/ros2) |
 
-## Build status ([Buildfarm](https://github.com/ctu-mrs/buildfarm))
+## Backwards compatibility and updates
 
-We utilize acceptance tests to determine the releasaiblity of the system and to release the system automatically.
-The **stable** version of our system should be installable and working allways regardless of the state of the tests and _red flags_ below.
-
-## Docker - stable/unstable rolling release
-
-Download from Dockerhub: [ctumrs/pairs_uav_system](https://hub.docker.com/r/ctumrs/pairs_uav_system/tags)
-
-The multiarch (AMD and ARM64) docker image contains the `ros-jazzy-mrs-uav-system-full` ROS package and, with that, all the MRS dependencies.
-
-## ROS2 Build status (in development)([Buildfarm2](https://github.com/ctu-mrs/buildfarm2))
-
-### PPAs
-
-| [Stable](https://github.com/ctu-mrs/ppa2-stable)                                                                                                                           | Testing                                                                                                                                                                | [Unstable](https://github.com/ctu-mrs/ppa2-unstable)                                                                                                                               |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [![stable-ppa2-build](https://github.com/ctu-mrs/ppa2-stable/actions/workflows/deploy.yml/badge.svg)](https://github.com/ctu-mrs/ppa2-stable/actions/workflows/deploy.yml) | [![Deploy](https://github.com/ctu-mrs/ppa2-testing/actions/workflows/deploy.yml/badge.svg)](https://github.com/ctu-mrs/ppa2-testing/actions/workflows/deploy.yml)      | [![unstable-ppa2-build](https://github.com/ctu-mrs/ppa2-unstable/actions/workflows/deploy.yml/badge.svg)](https://github.com/ctu-mrs/ppa2-unstable/actions/workflows/deploy.yml) |
-
-## Docker pipelines
-
-Any package within the system have the option to generate a docker image.
-These are typically thirdparty package with complex dependencies that can not be easily satisfied through the `apt` installation system.
-Additionally, the `mrs-uav-system` package generates a docker image with the full system.
-
-|                         | [Stable](https://github.com/ctu-mrs/ppa-stable)                                                                                                                                                                        | Unstable                                                                                                                                                                                                                     |
-|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| MRS ROS Packages        | [![stable_pairs_dockers](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_dockers.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_dockers.yml)                      | [![unstable_pairs_dockers](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_dockers.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_dockers.yml)                      |
-| Thirdparty ROS packages | [![stable_thirdparty_dockers](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_dockers.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_dockers.yml) | [![unstable_thirdparty_dockers](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_dockers.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_dockers.yml) |
-
-### Testing
-
-| Stable                                                                                                                                                                       | Release candidate                                                                                                                                                                                                         | Unstable                                                                                                                                                                           | Test coverage                                                                                                 |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| [![test_stable](https://github.com/ctu-mrs/buildfarm2/actions/workflows/test_stable.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/test_stable.yml) | [![build_testing_test_release](https://github.com/ctu-mrs/buildfarm2/actions/workflows/build_testing_test_release.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/build_testing_test_release.yml) | [![test_unstable](https://github.com/ctu-mrs/buildfarm2/actions/workflows/test_unstable.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/test_unstable.yml) | [![testing-ppa2-build](https://ctu-mrs.github.io/buildfarm2/badge.svg)](https://ctu-mrs.github.io/buildfarm2) |
-
-### x86-64/AMD64
-
-|                         | [Stable](https://github.com/ctu-mrs/ppa2-stable)                                                                                                                                                                 | Release Candidate                                                                                                                                                                                                         | [Unstable](https://github.com/ctu-mrs/ppa2-unstable)                                                                                                                                                                   |
-|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| MRS ROS Packages        | [![stable-mrs-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_amd64.yml)                      | [![build_testing_test_release](https://github.com/ctu-mrs/buildfarm2/actions/workflows/build_testing_test_release.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/build_testing_test_release.yml) | [![unstable-mrs-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_amd64.yml)                      |
-| Thirdparty ROS packages | [![stable-thirdparty-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_amd64.yml) | [![testing--thirdparty-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/testing_thirdparty_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/testing_thirdparty_amd64.yml)      | [![unstable-thirdparty-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_amd64.yml) |
-| Non-ROS packages        | [![stable-nonbloom-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_nonbloom_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_nonbloom_amd64.yml)       | [![testing--nonbloom-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/testing_nonbloom_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/testing_nonbloom_amd64.yml)            | [![unstable-nonbloom-amd64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_nonbloom_amd64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_nonbloom_amd64.yml)       |
-
-### AARCH64/ARM64
-
-|                         | [Stable](https://github.com/ctu-mrs/ppa2-stable)                                                                                                                                                                | [Unstable](https://github.com/ctu-mrs/ppa2-unstable)                                                                                                                                                                  |
-|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| MRS ROS Packages        | [![stable-mrs-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_pairs_arm64.yml)                     | [![unstable-mrs-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_pairs_arm64.yml)                     |
-| Thirdparty ROS packages | [![stable-thirdparty-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_thirdparty_arm64.yml) | [![unstable-thirdparty-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_thirdparty_arm64.yml) |
-| Non-ROS packages        | [![stable-nonbloom-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_nonbloom_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/stable_nonbloom_arm64.yml)       | [![unstable-nonbloom-arm64](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_nonbloom_arm64.yml/badge.svg)](https://github.com/ctu-mrs/buildfarm2/actions/workflows/unstable_nonbloom_arm64.yml)       |
+We do not guarantee backward compatibility at any time. The platform evolves
+according to the needs of the PAIRS group, and updates may not be compatible
+with users' local configs, simulation worlds, or tmux sessions. When a change
+requires user action, we will open an issue in this repository labeled
+**users-read-me**.
 
 # Disclaimer
 

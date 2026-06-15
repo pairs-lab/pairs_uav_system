@@ -4,7 +4,7 @@
 
   <name>pairs_uav_system</name>
   <version>2.0.0</version>
-  <description>The MRS UAV System metapackage</description>
+  <description>The PAIRS UAV System metapackage</description>
 
   <author email="canhthanh@vnu.edu.vn">Thanh Nguyen Canh</author>
   <maintainer email="canhthanh@vnu.edu.vn">Thanh Nguyen Canh</maintainer>
