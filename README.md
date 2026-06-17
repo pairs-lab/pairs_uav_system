@@ -44,7 +44,15 @@ sudo apt update
 sudo apt install ros-noetic-pairs-uav-system-full
 ```
 
-4. Start the example Gazebo simulation session:
+4. Install the GeographicLib geoid dataset. The PX4/MAVROS bridge needs it to
+   convert between ellipsoid and geoid (AMSL) altitude; without it MAVROS fails
+   to start with `Could not read geoid file .../egm96-5.pgm`:
+```bash
+sudo apt install geographiclib-tools
+sudo geographiclib-get-geoids egm96-5
+```
+
+5. Start the example Gazebo simulation session:
 ```bash
 roscd pairs_uav_gazebo_simulation/tmux/one_drone
 ./start.sh
